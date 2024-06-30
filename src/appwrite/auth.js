@@ -46,6 +46,7 @@ export class AuthService {
       if (user) {
         return user;
       } else {
+        console.log("No user found in getCurrentuser");
         return null;
       }
     } catch (error) {
