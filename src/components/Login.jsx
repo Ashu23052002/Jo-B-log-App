@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import service from "../appwrite/auth.js";
+import authService from "../appwrite/auth.js";
 import { useForm } from "react-hook-form";
 import {Input,Button,Logo} from "./index.js";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,9 +16,9 @@ function Login() {
     console.log(data);
     setError("");
     try {
-      const session = await service.login(data);
+      const session = await authService.login(data);
       if (session) {
-        const userData = await service.getCurrentUser();
+        const userData = await authService.getCurrentUser();
         if (userData) dispatch(authLogin(userData));
         navigate("/");
       }

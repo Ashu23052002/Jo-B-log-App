@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import service from "../appwrite/auth.js";
+import authService from "../appwrite/auth.js";
 import { useForm } from "react-hook-form";
 import { Input, Button, Logo } from "./index.js";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,9 +15,9 @@ const Signup = () => {
   const signup = async (data) => {
     setError("");
     try {
-      const userData = await service.createAccount(data);
+      const userData = await authService.createAccount(data);
       if (userData) {
-        const userData = await service.getCurrentUser();
+        const userData = await authService.getCurrentUser();
         if (userData) dispatch(login(userData));
         navigate("/");
       }
