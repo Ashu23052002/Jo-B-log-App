@@ -6,6 +6,7 @@ import Logo from "../Logo.jsx";
 
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
+//  console.log("header.jsx : ",authStatus);
   const navigate = useNavigate();
 
   const navItems = [
@@ -35,20 +36,27 @@ const Header = () => {
       active: authStatus,
     },
   ];
+  
   return (
-    <header>
+    <header className='py-3 shadow bg-gray-500'>
       <Container>
-        <nav>
-          <Link t0="/">
-            <Logo width="70px" />
-          </Link>
-          <ul className="flex ml-auto">
-            {navItems.map((item) =>
-              item.active ? (
-                <li key={item.name}>
-                  <button onClick={navigate(item.slug)}>{item.name}</button>
-                </li>
-              ) : null
+        <nav className='flex'>
+          <div className='mr-4'>
+            <Link to='/'>
+              <Logo width='70px'   />
+
+              </Link>
+          </div>
+          <ul className='flex ml-auto'>
+            {navItems.map((item) => 
+            item.active ? (
+              <li key={item.name}>
+                <button
+                onClick={() => navigate(item.slug)}
+                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+                >{item.name}</button>
+              </li>
+            ) : null
             )}
             {authStatus && (
               <li>
@@ -57,9 +65,9 @@ const Header = () => {
             )}
           </ul>
         </nav>
-      </Container>
+        </Container>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

@@ -32,12 +32,14 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className="h-full items-center flex flex-wrap mx-auto">
-      <div className="w-full mx-auto">
+    <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+      <div className="w-full block">
         <Header />
-        <LogoutBtn />
-        <main><Outlet /></main>
-        {/* <Footer /> */}
+        <main>
+          {/* TODO:  */}
+          <Outlet />
+        </main>
+        <Footer />
       </div>
     </div>
   ) : null;

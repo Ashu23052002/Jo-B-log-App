@@ -79,8 +79,12 @@ export class Service {
     }
   }
 
-  async getAllPost(queries = Query.equal("status", ["active"])) {
+  async getAllPost() {
     try {
+      // Define the query parameter to ensure it's formatted correctly
+      const queries = [Query.equal("status", "active")];
+
+      // Call the listDocuments method with the correctly formatted queries parameter
       return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
@@ -117,14 +121,11 @@ export class Service {
     }
   }
 
-  getFilePreview(fileId){
-    return this.bucket.getFilePreview(
-      conf.appwriteBucketId,
-      fileId
-    );
+  getFilePreview(fileId) {
+    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
   }
 }
 
-const service = new Service();
+const appwriteService = new Service();
 
-export default service;
+export default appwriteService;
